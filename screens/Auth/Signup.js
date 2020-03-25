@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const View = styled.View`
-    justify-content = center;
+    justify-content: center;
     align-items: center;
     flex: 1;
 `;
