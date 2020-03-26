@@ -1,19 +1,21 @@
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import TabNavigation from "./TabNavigation";
-import PhotoNavigation from "./PhotoNavigation";
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import { View } from 'react-native'
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack"
+// import TabNavigation from "./TabNavigation";
+// import PhotoNavigation from "./PhotoNavigation";
+import Home from "../screens/Home"
+import Profile from "../screens/Profile"
+import Search from "../screens/Search"
+import Notifications from "../screens/Notifications"
 
-const MainNavigation = createStackNavigator({
-    TabNavigation:{
-        screen:TabNavigation,
-        navigationOptions:{
-            title:""
-        }
-    },
-    PhotoNavigation,
-}, {
-    headerMode:"none",
-    mode:"modal"
-});
+const TabNavigation = createBottomTabNavigator();
 
-export default createAppContainer(MainNavigation);
+export default () => {
+    return (
+        <NavigationContainer>
+            <TabNavigation.Nav/>
+        </NavigationContainer>
+    );
+}
