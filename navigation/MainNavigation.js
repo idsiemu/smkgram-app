@@ -1,21 +1,33 @@
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import { View } from 'react-native'
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack"
-// import TabNavigation from "./TabNavigation";
-// import PhotoNavigation from "./PhotoNavigation";
-import Home from "../screens/Home"
-import Profile from "../screens/Profile"
-import Search from "../screens/Search"
-import Notifications from "../screens/Notifications"
+import TabNavigation from "./TabNavigation";
+import PhotoNavigation from "./PhotoNavigation";
 
-const TabNavigation = createBottomTabNavigator();
+const MainNavigation = createStackNavigator();
+
+// {
+//     TabNavigation:{
+//         screen:TabNavigation,
+//         navigationOptions:{
+//             title:""
+//         }
+//     },
+//     PhotoNavigation,
+// }, {
+//     headerMode:"none",
+//     mode:"modal"
+// })
+
 
 export default () => {
     return (
         <NavigationContainer>
-            <TabNavigation.Nav/>
+            <MainNavigation.Navigator initialRouteName="TabNavigation" headerMode="none">
+                <MainNavigation.Screen name="TabNavigation" component={TabNavigation} />
+                <MainNavigation.Screen name="PhotoNavigation" component={PhotoNavigation} />
+            </MainNavigation.Navigator>
         </NavigationContainer>
     );
 }
