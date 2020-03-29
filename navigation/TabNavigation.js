@@ -9,17 +9,14 @@ import Notifications from "../screens/Notifications"
 
 const TabNavigation = createBottomTabNavigator();
 
-export default () => {
+export default ({navigation}) => {
     return (
         <TabNavigation.Navigator>
             <TabNavigation.Screen name="Home" component={Home} />
             <TabNavigation.Screen name="Profile" component={Profile} />
             <TabNavigation.Screen name="Add" component={View} listeners={{
-                tabPress: e => {
-                    e.preventDefault();
-                    console.log('Add');
-                },
-            }}/>
+                tabPress: () => navigation.navigate("PhotoNavigation")
+            }} />
             <TabNavigation.Screen name="Notifications" component={Notifications} />
             <TabNavigation.Screen name="Search" component={Search} />
         </TabNavigation.Navigator>
