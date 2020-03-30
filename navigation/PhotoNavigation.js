@@ -12,7 +12,7 @@ const stack =  createStackNavigator();
 
 function PhotoTabs() {
     return (
-        <material.Navigator tabBarPosition="top">
+        <material.Navigator tabBarPosition="bottom">
             <material.Screen name="SelectPhoto" component={SelectPhoto}/>
             <material.Screen name="TakePhoto" component={TakePhoto}/>
         </material.Navigator>

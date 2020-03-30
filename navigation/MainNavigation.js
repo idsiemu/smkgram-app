@@ -10,7 +10,7 @@ const MainNavigation =  createStackNavigator();
 export default () => {
     return (
         <NavigationContainer>
-            <MainNavigation.Navigator initialRouteName="Root" headerMode="none">
+            <MainNavigation.Navigator initialRouteName="Root" headerMode="none" mode="modal">
                 <MainNavigation.Screen name="TabNavigation" component={TabNavigation} />
                 <MainNavigation.Screen name="PhotoNavigation" component={PhotoNavigation} />
             </MainNavigation.Navigator>
