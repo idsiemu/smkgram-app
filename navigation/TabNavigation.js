@@ -7,6 +7,7 @@ import Home from "../screens/Home"
 import Profile from "../screens/Profile"
 import Search from "../screens/Search"
 import Notifications from "../screens/Notifications"
+import MessageLink from '../components/MessageLink';
 
 const stack = createStackNavigator();
 
@@ -28,11 +29,7 @@ export default () => {
                 initialRoute: Home,
                 customConfig: {
                     title: 'Home',
-                    headerRight: () => (
-                        <TouchableOpacity>
-                            <Text>Hello</Text>
-                        </TouchableOpacity>
-                    )
+                    headerRight: () => <MessageLink/>
                 }
             }}/>
             <TabNavigation.Screen name="Profile" component={stackFactory} initialParams={{
