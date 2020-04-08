@@ -1,16 +1,34 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import constants from "../constants";
 
 const Container = styled.View`
     margin-bottom: 10px;
 `;
 
-const TextInput = styled.TextInput``;
+const TextInput = styled.TextInput`
+    width: ${constants.width / 2}px;
+    padding:10px;
+    background-color: ${props => props.theme.greyColor};
+    border: 1px solid ${props => props.theme.lightGreyColor};
+    border-radius: 4px;
+`;
 
-const AuthInput = ({placeholder, value, keyboardType = "default", autoCapitalize}) => (
+const AuthInput = ({
+    placeholder,
+    value,
+    keyboardType = "default",
+    autoCapitalize = "none",
+    onChange}) => (
     <Container>
-        <TextInput autoCapitalize={autoCapitalize} keyboardType={keyboardType} placeholder={placeholder} value={value} />
+        <TextInput
+            autoCapitalize={autoCapitalize}
+            keyboardType={keyboardType}
+            placeholder={placeholder}
+            value={value}
+            onChangeText={onChange}
+        />
     </Container>
 );
 
@@ -25,7 +43,13 @@ AuthInput.propTypes = {
         "email-address",
         "phone-pad"
     ]),
-    autoCapitalize: PropTypes.oneOf
+    autoCapitalize: PropTypes.oneOf([
+        "none",
+        "sentences",
+        "words",
+        "characters"
+    ]),
+    onChange: PropTypes.func.isRequired
 };
 
 export default AuthInput;

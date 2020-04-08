@@ -6,13 +6,14 @@ import constants from "../../constants";
 import AuthButton from "../../components/AuthButton";
 
 const View = styled.View`
+    background-color:white;
     justify-content: center;
     align-items: center;
     flex: 1;
 `;
 
 const Image = styled.Image`
-    width: ${constants.width / 2.5};
+    width: ${constants.width / 2.5}px;
     margin-bottom: 0px;
 `;
 
