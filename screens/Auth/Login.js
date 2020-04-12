@@ -18,15 +18,15 @@ const View = styled.View`
 `;
 
 export default () => {
+    const navigation = useNavigation();
     const emailInput = useInput("");
     const [ loading, setLoding ] = useState(false);
-    const requestSecret = useMutation(LOG_IN, {
+    const [requestSecretMutation] = useMutation(LOG_IN, {
         variables : {
             email: emailInput.value
         }
     });
     const handleLogin =  async () => {
-        const navigation = useNavigation();
         const { value } = emailInput;
         const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if(value === ""){
@@ -38,10 +38,17 @@ export default () => {
         }
         try{
             setLoding(true);
-            await requestSecret();
-            Alert.alert("check your email");
-            navigation.navigate("Confirm");
+            const{data: {requestSecret }} = await requestSecretMutation();
+            if(requestSecret){
+                Alert.alert("check your email");
+                navigation.navigate("Confirm");
+                return;
+            }else{
+                Alert.alert("Account not found");
+                navigation.navigate("Signup");
+            }
         }catch(e){
+            console.log(e);
             Alert.alert("Can't log in now");
         } finally {
             setLoding(false);
@@ -55,7 +62,7 @@ export default () => {
                     placeholder="Email"
                     keyboardType="email-address"
                     returnKeyType="send"
-                    onEndEditing={handleLogin}
+                    onSubmitEditing={handleLogin}
                     autoCorrect={false}/>
                 <AuthButton loading={loading} text="Log In" onPress={handleLogin} />
             </View>

@@ -22,7 +22,7 @@ const AuthInput = ({
         autoCapitalize = "none",
         returnKeyType = "done",
         onChange,
-        onEndEditing = () => null,
+        onSubmitEditing = () => null,
         autoCorrect = true
     }) => (
     <Container>
@@ -33,7 +33,7 @@ const AuthInput = ({
             value={value}
             returnKeyType={returnKeyType}
             onChangeText={onChange}
-            onEndEditing={onEndEditing}
+            onSubmitEditing={onSubmitEditing}
             autoCorrect={autoCorrect}
         />
     </Container>
@@ -64,7 +64,7 @@ AuthInput.propTypes = {
         "send"
     ]),
     onChange: PropTypes.func.isRequired,
-    onEndEditing: PropTypes.func,
+    onSubmitEditing: PropTypes.func,
     autoCorrect: PropTypes.bool
 };
 
