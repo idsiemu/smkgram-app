@@ -5,7 +5,6 @@ import AuthInput from "../../components/AuthInput";
 import useInput from "../../Hooks/useInput";
 import { Alert, TouchableWithoutFeedback, Keyboard} from "react-native";
 import { useMutation } from "react-apollo-hooks";
-import { useNavigation } from '@react-navigation/native';
 import { LOG_IN } from "./AuthQueries";
 
 
@@ -17,9 +16,8 @@ const View = styled.View`
     flex: 1;
 `;
 
-export default () => {
-    const navigation = useNavigation();
-    const emailInput = useInput("");
+export default ({navigation, route}) => {
+    const emailInput = useInput(route.parmas ? route.parmas.email : "");
     const [ loading, setLoding ] = useState(false);
     const [requestSecretMutation] = useMutation(LOG_IN, {
         variables : {
